@@ -1,10 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-
 
 @Component({
   selector: 'app-report',
@@ -16,6 +16,8 @@ export class ReportComponent implements OnInit{
   ngOnInit(): void {
     this.generatePDF();
   }
+
+  constructor(private router: Router){}
 
   generatePDF() {
 
@@ -34,6 +36,9 @@ export class ReportComponent implements OnInit{
     };
 
     pdfMake.createPdf(documentDefinition).open();
+
+    this.router.navigate(['/']);
+
   }
 
 }
