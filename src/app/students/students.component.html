@@ -1,0 +1,11 @@
+<ag-grid-angular
+  style="width: 1200px; height: 1000px;"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [masterDetail]="true"
+  [detailCellRendererParams]="detailCellRendererParams"
+  [rowData]="rowData"
+  class="ag-theme-alpine"
+  (firstDataRendered)="onFirstDataRendered($event)"
+  (gridReady)="onGridReady()"
+/>

@@ -1,0 +1,57 @@
+<div class="report-card" *ngIf="!isLoading && !studentNotFound">
+    <h1>{{ Student?.name?.charAt(0)?.toUpperCase() +''+ Student?.name?.slice(1) }} Report Card</h1>
+    <div class="table-container">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th class="marksobtained">Subject</th>
+                    <th class="marksobtained">Total marks</th>
+                    <th class="marksobtained">Marks Obtained</th>
+                    <th class="marksobtained">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Subject of Student?.marksArray">
+                    <th class="Subjects marksobtained">{{ Subject.subject }}</th>
+                    <td class="marksobtained">100</td>
+                    <td class="marksobtained" [ngClass]="Subject.marks < 33 ? 'failed' : 'passed'">{{ Subject.marks }}</td>
+                    <td class="marksobtained" [ngClass]="Subject.marks < 33 ? 'failed' : 'passed'">{{ Subject.marks | grade }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="student-report-card" *ngIf="!isLoading && !studentNotFound">
+    <h1>Overall Result</h1>
+    <div class="responsive-table-container">
+        <table class="summary-table">
+            <tbody>
+                <tr>
+                    <th class="thead">Status</th>
+                    <td class="alg" [ngClass]="failed ? 'failed':'passed'">{{ failed ? 'Failed':'Passed' }}</td>
+                </tr>
+                <tr>
+                    <th class="thead">Total Marks</th>
+                    <td class="black">{{ total }}</td> <!-- Percentage for Passed Subjects -->
+                </tr>
+                <tr>
+                    <th class="thead">Total Percentage</th>
+                    <td class="alg">{{ ((total/subLength).toFixed(2))+'%' }}</td> <!-- Total of Failed Subjects -->
+                </tr>
+                <tr>
+                    <th class="thead"><strong>Total</strong></th>
+                    <td class="black"><strong>{{ subLength*100 }}</strong></td> <!-- Total Marks -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="isLoading && !studentNotFound" class="division">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="div" *ngIf="studentNotFound && !isLoading">Student Not Found with id {{ id }} </div>

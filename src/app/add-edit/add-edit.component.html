@@ -1,0 +1,40 @@
+<div class="form" *ngIf="!isLoading">
+    <form class="form" [formGroup]="subjectMarksForm" (ngSubmit)="onSubmit()">
+
+
+      <label for="class" class="labeled" *ngIf="editMode">Select Standard</label>
+        <select [(ngModel)]="std" (change)="getSubjects()" class="form-field" id="selectOption" formControlName="std">
+            <option [value]="-1">-- Please Select Standard --</option>
+            <option *ngFor="let std of standards" [value]="std.value">{{ std.viewValue }}</option>
+        </select>
+
+        <label for="name" class="labeled" *ngIf="editMode">Name</label>
+        <input class="form-field" formControlName="name" type="text" placeholder="Enter name"/>
+
+        <label class="form-field" class="labeled special" for="gender"><span style="margin-right: 20px;">Gender &nbsp;: </span><input type="radio" formControlName="gender" value="male" />Male
+        <input type="radio" formControlName="gender" value="female" />Female</label>
+
+        <label *ngIf="editMode" class="labeled" >GR No.</label>
+        <input [disabled]="true" class="form-field" placeholder="GR no." type="number" min="1" formControlName="grNo"/>
+
+        <label *ngIf="editMode" class="labeled" >Roll No.</label>
+        <input [disabled]="true" class="form-field" placeholder="Roll No." type="number" min="1" formControlName="rollNo"/>
+
+        <div formArrayName="marks">
+          <p class="mb-5" *ngIf="marksArray.length != 0">Enter Marks:</p>
+            <div class="markswithlabel" *ngFor="let markControl of marksArray.controls; let i = index" [formGroupName]="i">
+              <!-- Subject name -->
+              <!-- Input for marks -->
+               <label *ngIf="editMode2" [for]="markControl.get('subject')?.value">{{ markControl.get('subject')?.value }}</label>
+               <input class="form-field" type="number" formControlName="marks" [placeholder]="markControl.get('subject')?.value" />
+               <span  *ngIf="(!markControl.get('marks')?.valid && markControl.get('marks')?.touched) || (editMode2 && markControl.get('marks')?.invalid)" style="color: red;">Please Enter Marks between 0 to 100</span>
+            </div>
+        </div>
+
+        <div class="btns"><button class="form-field" type="submit" [disabled]="subjectMarksForm.invalid || std < 0" *ngIf="!editMode">submit</button></div>
+        <div class="btns"><button class="form-field" type="submit" [disabled]="subjectMarksForm.invalid || std < 0" *ngIf="editMode">Edit</button></div>
+
+    </form>
+</div>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
