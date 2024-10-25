@@ -19,6 +19,7 @@ import { ReportCardComponent } from './report-card/report-card.component';
 import { GradePipe } from './grade.pipe';
 import { DeleteAlertComponent } from './delete-alert/delete-alert.component';
 import { ClassResultComponent } from './classes/class-result/class-result.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ClassResultComponent } from './classes/class-result/class-result.compon
     ReportCardComponent,
     GradePipe,
     DeleteAlertComponent,
+    ReportComponent,
     ClassResultComponent
   ],
   imports: [

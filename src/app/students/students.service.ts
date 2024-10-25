@@ -20,6 +20,7 @@ export interface marksArray {
 @Injectable({
   providedIn: 'root',
 })
+
 export class StudentService {
   constructor(private http: HttpClient) {}
 

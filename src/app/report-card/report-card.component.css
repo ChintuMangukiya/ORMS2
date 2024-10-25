@@ -215,11 +215,6 @@ body {
     background-color: #ddd !important;
 }
 
-
-.gradeLast:nth-last-child() {
-    border-bottom-right-radius: 10px;
-}
-
 .div{
     height: 300px;
 }
