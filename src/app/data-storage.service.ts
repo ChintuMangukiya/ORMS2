@@ -21,7 +21,6 @@ export class DataStorageSrevice{
   fetchStudents() {
 
     
-
       this.http
         .get<Student[]>(
           'https://result-management-system-7b457-default-rtdb.firebaseio.com/students.json'
@@ -52,5 +51,11 @@ export class DataStorageSrevice{
         });
     }
 
-
+    fetchStudents1(){
+      return this.http
+        .get<Student[]>(
+          'https://result-management-system-7b457-default-rtdb.firebaseio.com/students.json'
+        )
+        
+    }
 }

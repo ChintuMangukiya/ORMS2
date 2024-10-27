@@ -1,1 +1,16 @@
-<p>report works!</p>
+<div class="error-container" *ngIf="!validPdf">
+    <div class="error-header">
+      <div class="error-icon">!</div>
+      <div class="error-title">Error</div>
+    </div>
+    <div class="main-error">
+        There is no data available with given id.
+    </div>
+    <div class="sub-error">
+        You will redirected to home shortly after.
+    </div>
+</div>
+
+<div *ngIf="validPdf" style="height: 500px;">
+
+</div>

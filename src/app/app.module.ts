@@ -43,7 +43,7 @@ import { ReportComponent } from './report/report.component';
     AppRoutingModule,
     AgGridModule,
     AgGridAngular,
-    BrowserAnimationsModule, // AgGridModule imported here
+    BrowserAnimationsModule,
     MaterialModule,
     MatSidenavModule
   ],

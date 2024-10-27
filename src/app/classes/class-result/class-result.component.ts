@@ -18,17 +18,17 @@ import { ActivatedRoute, Params } from "@angular/router";
 
 
 export interface ICallRecord {
+  subject: string;
   marks: number;
-  subject: string
 }
 
 
 export interface convertedMarks{
-  totalMarks: number,
   subject: string,
+  totalMarks: number,
   marks: number,
+  grade: string,
   status: string,
-  grade: string
 }
 
 export interface convertedStudentData{

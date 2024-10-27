@@ -62,11 +62,27 @@ export class StudentsComponent{
 
   public columnDefs: ColDef[] = [
     // group cell renderer needed for expand / collapse icons
-    { field: "grNo",cellRenderer: "agGroupCellRenderer" },
-    { field: "std"},
-    { field: "rollNo"},
-    { field: "name", editable: true},
+    { field: "grNo",cellRenderer: "agGroupCellRenderer" , flex: 1 },
+    { field: "std", cellRenderer: (params:any)=>{
+      switch(params.value)
+      {
+        case '11' : params.value = '11 A';
+                    break;
+        case '12' : params.value = '11 B';
+                    break;
+        case '13' : params.value = '12 A';
+                    break;
+        case '14' : params.value = '12 B';
+                    break;
+        default : params.value = params.value;
+                  break;
+      }
+      return `<span>${params.value}</span>`
+    },flex: 0.8},
+    { field: "rollNo", flex: 0.9},
+    { field: "name", editable: true, flex:0.9},
     { field: 'gender', sortable: true, filter: true, editable: false, 
+      flex: 1.6,
       cellRenderer: (params: any) => {
 
         console.log(params);
@@ -84,19 +100,18 @@ export class StudentsComponent{
             Female
           </label>
         `;
-
       }
     },
     {
       field: 'Operartions',
       sortable: false,
       cellRenderer: (params: any)=>{
-        return `<a target="_blank" href="edit/${params.data.id}" style="background-color:rgb(51, 136, 51); padding: 8px; width: 100px !important; border: none; margin-right: 4px; border-radius: 4px; color: white; text-decoration: none;" >Update</a>
+        return `<a target="_blank" href="edit/${params.data.id}" style="background-color:rgb(51, 136, 51); padding: 8px; width: 100px !important; border: none; border-radius: 4px; color: white; text-decoration: none;" >Update</a>
         <a href="delete/${params.data.id}" style="background-color:rgb(228, 65, 65); border: none;padding: 8px; width: 60px !important; border-radius: 4px; margin-left: 4px; color: white; text-decoration: none;" >Delete</a>
-        <a href="report-print/${params.data.id}" style="background-color:rgb(68, 68, 212); border: none;padding: 8px;padding-left: 12px !important; padding-right: 12px !important;width: 60px !important; border-radius: 4px; margin-left: 8px; color: white; text-decoration: none;" >Print</a>
+        <a href="report-print/${params.data.id}" style="background-color:rgb(0, 119, 255); border: none;padding: 8px; width: 60px !important; border-radius: 4px; margin-left: 4px; color: white; text-decoration: none;" >&nbsp&nbspPrint&nbsp&nbsp</a>
         `
       },
-      flex: 1.6
+      flex: 2.2
     }
   ];
   public defaultColDef: ColDef = {
